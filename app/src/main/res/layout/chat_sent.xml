@@ -15,10 +15,10 @@
                 android:id="@+id/chat_bubble"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
+                android:paddingTop="@dimen/chat_padding_vertical"
+                android:paddingRight="@dimen/chat_padding_horizontal"
+                android:paddingBottom="@dimen/chat_padding_vertical"
+                android:paddingLeft="@dimen/chat_padding_horizontal"
                 android:background="@drawable/chat_sent"
                 android:textColor="@color/lightText"/>
 </LinearLayout>
