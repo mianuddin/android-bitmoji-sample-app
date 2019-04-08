@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
+import android.view.Menu
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -80,6 +81,11 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
         supportFragmentManager.beginTransaction()
             .replace(R.id.sticker_picker, BitmojiFragment())
             .commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_items, menu)
+        return true
     }
 
     override fun onBitmojiSelected(imageUrl: String, previewDrawable: Drawable) {
