@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.chatsample">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.snapchat.kit.sdk.clientId" android:value="f87349a5-8a99-4536-8caa-c48f853a3bea"/>
+        <meta-data android:name="com.snapchat.kit.sdk.redirectUrl" android:value="example://snap-kit/oauth2"/>
+        <meta-data android:name="com.snapchat.kit.sdk.scopes" android:resource="@array/snap_kit_scopes"/>
+
+        <activity
+                android:name="com.example.chatsample.MainActivity"
+                android:windowSoftInputMode="stateVisible">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name="com.snapchat.kit.sdk.SnapKitActivity"
+                android:launchMode="singleTask"
+        >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                        android:scheme="example"
+                        android:host="snap-kit"
+                        android:path="/oauth2"
+                />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
