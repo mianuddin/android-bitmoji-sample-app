@@ -53,6 +53,7 @@
         <FrameLayout
                 android:id="@+id/sticker_picker"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/sticker_picker_height"/>
+                android:layout_height="@dimen/sticker_picker_height"
+                android:visibility="gone"/>
 </LinearLayout>
 
