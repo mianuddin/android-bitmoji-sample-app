@@ -52,10 +52,10 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
                 val text = messageInput.text.toString()
                 if (!TextUtils.isEmpty(text)) {
                     messageAdapter.addMessage(TextMessage(text))
+                    recyclerView.smoothScrollToPosition(messageAdapter.itemCount - 1)
                     messageInput.setText("")
                     messageInput.requestFocus()
                 }
-                recyclerView.scrollToPosition(0)
             }
 
             true
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
 
     override fun onBitmojiSelected(imageUrl: String, previewDrawable: Drawable) {
         messageAdapter.addMessage(ImageMessage(previewDrawable))
-        recyclerView.scrollToPosition(0)
+        recyclerView.smoothScrollToPosition(messageAdapter.itemCount - 1)
     }
 
     private fun toggleStickerPickerVisibility() {
