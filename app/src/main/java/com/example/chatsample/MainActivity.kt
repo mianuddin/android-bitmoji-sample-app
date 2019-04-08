@@ -9,6 +9,9 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import com.example.chatsample.message.ImageMessage
+import com.example.chatsample.message.MessageAdapter
+import com.example.chatsample.message.TextMessage
 import com.snapchat.kit.sdk.bitmoji.OnBitmojiSelectedListener
 import com.snapchat.kit.sdk.bitmoji.ui.BitmojiIconFragment
 import com.snapchat.kit.sdk.bitmoji.ui.BitmojiFragment
@@ -69,7 +72,7 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
     }
 
     fun extraOptions(v: View) {
-        var sticker_picker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
+        val sticker_picker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
         sticker_picker?.setFriend("bostonbruin2")
         sticker_picker?.setSearchText("tired")
     }

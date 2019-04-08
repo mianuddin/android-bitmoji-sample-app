@@ -1,4 +1,4 @@
-package com.example.chatsample
+package com.example.chatsample.message
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,11 +6,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import org.xmlpull.v1.XmlPullParser
+import com.example.chatsample.R
 
 class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
-    private var messages: MutableList<Message> = mutableListOf(TextMessage("Hi there!", true), TextMessage("Yo!"))
+    private var messages: MutableList<Message> = mutableListOf(
+        TextMessage(
+            "Hi there!",
+            true
+        ), TextMessage("Yo!")
+    )
 
     class MessageViewHolder(val messageView: LinearLayout) : RecyclerView.ViewHolder(messageView)
 
@@ -24,8 +29,10 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
             3 -> view = R.layout.chat_img_sent
         }
 
-        return MessageViewHolder(LayoutInflater.from(parent.context)
-            .inflate(view, parent, false) as LinearLayout)
+        return MessageViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(view, parent, false) as LinearLayout
+        )
     }
 
     override fun getItemViewType(position: Int): Int {
