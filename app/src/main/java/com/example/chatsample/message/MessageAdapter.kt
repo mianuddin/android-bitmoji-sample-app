@@ -1,6 +1,5 @@
 package com.example.chatsample.message
 
-import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
