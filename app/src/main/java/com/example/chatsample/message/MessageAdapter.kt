@@ -1,5 +1,6 @@
 package com.example.chatsample.message
 
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -57,6 +58,7 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
         messages.add(message)
         notifyDataSetChanged()
     }
+
 
     private fun getMessage(position: Int): Message {
         return messages.get(position)

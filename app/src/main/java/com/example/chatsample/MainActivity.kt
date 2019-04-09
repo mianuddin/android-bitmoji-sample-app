@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
@@ -19,7 +20,7 @@ import com.example.chatsample.message.TextMessage
 import com.snapchat.kit.sdk.bitmoji.OnBitmojiSelectedListener
 import com.snapchat.kit.sdk.bitmoji.ui.BitmojiIconFragment
 import com.snapchat.kit.sdk.bitmoji.ui.BitmojiFragment
-
+import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
                 if (!TextUtils.isEmpty(text)) {
                     messageAdapter.addMessage(TextMessage(text))
                     recyclerView.smoothScrollToPosition(messageAdapter.itemCount - 1)
+                    generateResponse()
                     messageInput.setText("")
                     messageInput.requestFocus()
                 }
@@ -91,6 +93,15 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
     override fun onBitmojiSelected(imageUrl: String, previewDrawable: Drawable) {
         messageAdapter.addMessage(ImageMessage(previewDrawable))
         recyclerView.smoothScrollToPosition(messageAdapter.itemCount - 1)
+        generateResponse()
+    }
+
+    private fun generateResponse() {
+        Handler().postDelayed({
+            val responses = "Cool!;Really?;k;lol;wow;Ok;Aww;rofl".split(";")
+            messageAdapter.addMessage(TextMessage(responses[Random.nextInt(0, responses.size)], true))
+            recyclerView.smoothScrollToPosition(messageAdapter.itemCount - 1)
+        }, (Random.nextInt(0, 5) * 500).toLong())
     }
 
     private fun toggleStickerPickerVisibility() {
