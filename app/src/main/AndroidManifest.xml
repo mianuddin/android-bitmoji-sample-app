@@ -17,8 +17,7 @@
         <meta-data android:name="com.snapchat.kit.sdk.scopes" android:resource="@array/snap_kit_scopes"/>
 
         <activity
-                android:name="com.example.chatsample.MainActivity"
-                android:windowSoftInputMode="stateVisible">
+                android:name="com.example.chatsample.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -8,6 +8,7 @@ import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -47,8 +48,6 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
 
         messageInput = findViewById(R.id.message_input)
 
-        messageInput.requestFocus()
-
         messageInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val text = messageInput.text.toString()
@@ -64,9 +63,11 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
             true
         }
 
-        messageInput.setOnClickListener {
-            if (stickerPickerVisible) toggleStickerPickerVisibility()
+        messageInput.setOnFocusChangeListener { _, b ->
+            if (b && stickerPickerVisible) toggleStickerPickerVisibility()
         }
+
+        messageInput.requestFocus()
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.bitmoji_icon, BitmojiIconFragment())
@@ -74,6 +75,7 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
 
         findViewById<FrameLayout>(R.id.bitmoji_icon).setOnClickListener {
             if (currentFocus == messageInput) {
+                messageInput.clearFocus()
                 toggleStickerPickerVisibility()
             }
             val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
