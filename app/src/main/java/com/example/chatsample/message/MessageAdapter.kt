@@ -15,7 +15,7 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
         TextMessage(
             "Hi there!",
             true
-        ), TextMessage("Yo!")
+        )
     )
 
     class MessageViewHolder(val messageView: LinearLayout) : RecyclerView.ViewHolder(messageView)
