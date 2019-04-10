@@ -15,4 +15,6 @@
 
     <dimen name="chat_img_width">200dp</dimen>
     <dimen name="chat_img_height">200dp</dimen>
+
+    <dimen name="avatar_padding_vertical">24dp</dimen>
 </resources>
