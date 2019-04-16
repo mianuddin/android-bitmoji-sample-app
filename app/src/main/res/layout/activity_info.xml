@@ -25,34 +25,4 @@
                 android:layout_height="@dimen/chat_img_height" tools:srcCompat="@drawable/ic_person"
                 android:contentDescription="@string/avatar_hint"/>
     </RelativeLayout>
-    <EditText
-            android:id="@+id/adjective_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/info_input_initial_padding_vertical"
-            android:layout_marginRight="@dimen/chat_margin_horizontal"
-            android:layout_marginLeft="@dimen/chat_margin_horizontal"
-            android:paddingTop="@dimen/message_input_padding_vertical"
-            android:paddingRight="@dimen/chat_padding_horizontal"
-            android:paddingBottom="@dimen/message_input_padding_vertical"
-            android:paddingLeft="@dimen/chat_padding_horizontal"
-            android:background="@drawable/chat_received"
-            android:inputType="textCapSentences|textAutoCorrect"
-            android:hint="@string/adjective_hint"
-            android:imeOptions="actionDone"/>
-    <EditText
-            android:id="@+id/friend_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/info_input_padding_vertical"
-            android:layout_marginRight="@dimen/chat_margin_horizontal"
-            android:layout_marginLeft="@dimen/chat_margin_horizontal"
-            android:paddingTop="@dimen/message_input_padding_vertical"
-            android:paddingRight="@dimen/chat_padding_horizontal"
-            android:paddingBottom="@dimen/message_input_padding_vertical"
-            android:paddingLeft="@dimen/chat_padding_horizontal"
-            android:background="@drawable/chat_received"
-            android:inputType="textCapSentences|textAutoCorrect"
-            android:hint="@string/friendmoji_hint"
-            android:imeOptions="actionDone"/>
 </LinearLayout>

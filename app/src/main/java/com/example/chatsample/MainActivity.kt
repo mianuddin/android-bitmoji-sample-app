@@ -16,6 +16,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.ImageView
 import com.example.chatsample.message.ImageMessage
 import com.example.chatsample.message.MessageAdapter
 import com.example.chatsample.message.TextMessage
@@ -84,8 +85,42 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
         }
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.sticker_picker, BitmojiFragment())
+            .replace(R.id.sticker_picker, BitmojiFragment.builder().withShowSearchBar(false).build() )
             .commit()
+
+        findViewById<ImageView>(R.id.search).setOnClickListener {
+            var stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
+            val text = messageInput.text.toString()
+
+            stickerPicker?.setSearchText(text)
+
+            messageInput.clearFocus()
+
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
+            if (!stickerPickerVisible) {
+                toggleStickerPickerVisibility()
+            }
+        }
+
+        findViewById<ImageView>(R.id.friendmoji).setOnClickListener {
+            var stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
+            val text = messageInput.text.toString()
+            if (!TextUtils.isEmpty(text)) {
+                stickerPicker?.setFriend(text)
+
+                messageInput.setText("")
+                messageInput.clearFocus()
+
+                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
+                if (!stickerPickerVisible) {
+                    toggleStickerPickerVisibility()
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
