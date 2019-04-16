@@ -31,13 +31,18 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var messageInput: EditText
+    private lateinit var bitmojiIcon: FrameLayout
+    private lateinit var friendmojiToggle: ImageView
+    private lateinit var search: ImageView
     private var stickerPickerVisible = false
+    private var friendmojiSet = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+        // Setup Recycler View
         viewManager = LinearLayoutManager(this)
         messageAdapter = MessageAdapter()
         messageAdapter.setHasStableIds(true)
@@ -48,6 +53,7 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
             adapter = messageAdapter
         }
 
+        // Setup message input
         messageInput = findViewById(R.id.message_input)
 
         messageInput.setOnEditorActionListener { _, actionId, _ ->
@@ -71,28 +77,35 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
 
         messageInput.requestFocus()
 
+        // Setup Bitmoji icon
         supportFragmentManager.beginTransaction()
             .replace(R.id.bitmoji_icon, BitmojiIconFragment())
             .commit()
 
-        findViewById<FrameLayout>(R.id.bitmoji_icon).setOnClickListener {
+        bitmojiIcon = findViewById(R.id.bitmoji_icon)
+
+        bitmojiIcon.setOnClickListener {
             if (currentFocus == messageInput) {
                 messageInput.clearFocus()
                 toggleStickerPickerVisibility()
             }
+
             val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         }
 
+        // Setup Bitmoji sticker picker
         supportFragmentManager.beginTransaction()
-            .replace(R.id.sticker_picker, BitmojiFragment.builder().withShowSearchBar(false).build() )
+            .replace(R.id.sticker_picker, BitmojiFragment.builder().withShowSearchBar(false).build())
             .commit()
 
-        findViewById<ImageView>(R.id.search).setOnClickListener {
-            var stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
-            val text = messageInput.text.toString()
+        // Setup search
+        search = findViewById(R.id.search)
 
-            stickerPicker?.setSearchText(text)
+        search.setOnClickListener {
+            val stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
+
+            stickerPicker?.setSearchText(messageInput.text.toString())
 
             messageInput.clearFocus()
 
@@ -103,23 +116,29 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
                 toggleStickerPickerVisibility()
             }
         }
+        // Setup Friendmoji toggle
+        friendmojiToggle = findViewById(R.id.friendmoji)
 
-        findViewById<ImageView>(R.id.friendmoji).setOnClickListener {
-            var stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
-            val text = messageInput.text.toString()
-            if (!TextUtils.isEmpty(text)) {
-                stickerPicker?.setFriend(text)
+        friendmojiToggle.setOnClickListener {
+            val stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
 
-                messageInput.setText("")
+            if (!stickerPickerVisible) {
                 messageInput.clearFocus()
 
                 val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 
-                if (!stickerPickerVisible) {
-                    toggleStickerPickerVisibility()
-                }
+                toggleStickerPickerVisibility()
             }
+
+            if (!friendmojiSet) {
+                stickerPicker?.setFriend("friendIdHere")
+                friendmojiToggle.setImageResource(R.drawable.ic_people)
+            } else {
+                stickerPicker?.setFriend("")
+                friendmojiToggle.setImageResource(R.drawable.ic_person)
+            }
+            friendmojiSet = !friendmojiSet
         }
     }
 
