@@ -6,4 +6,6 @@
     <string name="message_input_hint">Hello world!</string>
     <string name="bitmoji_hint">An image depicting a Bitmoji.</string>
     <string name="avatar_hint">An image which represents the user.</string>
+    <string name="friendmoji_hint">Toggle friendmoji</string>
+    <string name="search_hint">Search for a sticker</string>
 </resources>
