@@ -12,9 +12,12 @@
 
     <dimen name="chat_padding_vertical">8dp</dimen>
     <dimen name="chat_padding_horizontal">12dp</dimen>
+    <dimen name="chat_margin_horizontal">12dp</dimen>
 
     <dimen name="chat_img_width">200dp</dimen>
     <dimen name="chat_img_height">200dp</dimen>
 
     <dimen name="avatar_padding_vertical">24dp</dimen>
+    <dimen name="info_input_initial_padding_vertical">72dp</dimen>
+    <dimen name="info_input_padding_vertical">24dp</dimen>
 </resources>

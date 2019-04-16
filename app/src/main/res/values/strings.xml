@@ -4,4 +4,6 @@
     <string name="message_input_hint">Hello world!</string>
     <string name="bitmoji_hint">An image depicting a Bitmoji.</string>
     <string name="avatar_hint">An image which represents the user.</string>
+    <string name="adjective_hint">Your favorite adjective</string>
+    <string name="friendmoji_hint">Your friend\'s username</string>
 </resources>
