@@ -1,10 +1,15 @@
 package com.example.chatsample
 
+import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import com.snapchat.kit.sdk.bitmoji.networking.FetchAvatarUrlCallback
 import com.snapchat.kit.sdk.Bitmoji
+import com.snapchat.kit.sdk.SnapKit
 import com.squareup.picasso.Picasso
 
 
@@ -17,14 +22,21 @@ class InfoActivity : AppCompatActivity() {
         supportActionBar?.title = "Info"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        findViewById<Button>(R.id.logout).setOnClickListener {
+            SnapKit.unlink(applicationContext)
+            finish()
+            startActivity(intent)
+        }
+
         Bitmoji.fetchAvatarUrl(baseContext, object : FetchAvatarUrlCallback {
             override fun onSuccess(avatarUrl: String?) {
                 val avatarView = findViewById<ImageView>(R.id.avatar)
                 Picasso.get().load(avatarUrl).into(avatarView)
+                findViewById<Button>(R.id.logout).visibility = View.VISIBLE
             }
 
             override fun onFailure(isNetworkError: Boolean, statusCode: Int) {
-                // do something
+                findViewById<TextView>(R.id.avatarPrompt).visibility = View.VISIBLE
             }
         })
     }
