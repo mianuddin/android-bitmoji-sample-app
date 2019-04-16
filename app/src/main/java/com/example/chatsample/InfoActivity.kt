@@ -20,7 +20,7 @@ class InfoActivity : AppCompatActivity() {
         Bitmoji.fetchAvatarUrl(baseContext, object : FetchAvatarUrlCallback {
             override fun onSuccess(avatarUrl: String?) {
                 val avatarView = findViewById<ImageView>(R.id.avatar)
-                Picasso.get().load(avatarUrl).into(avatarView);
+                Picasso.get().load(avatarUrl).into(avatarView)
             }
 
             override fun onFailure(isNetworkError: Boolean, statusCode: Int) {
