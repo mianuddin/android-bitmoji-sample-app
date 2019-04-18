@@ -27,16 +27,6 @@ class InfoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        Bitmoji.fetchAvatarUrl(baseContext, object : FetchAvatarUrlCallback {
-            override fun onSuccess(avatarUrl: String?) {
-                val avatarView = findViewById<ImageView>(R.id.avatar)
-                Picasso.get().load(avatarUrl).into(avatarView)
-                findViewById<Button>(R.id.unlink).visibility = View.VISIBLE
-            }
-
-            override fun onFailure(isNetworkError: Boolean, statusCode: Int) {
-                findViewById<TextView>(R.id.avatarPrompt).visibility = View.VISIBLE
-            }
-        })
+        // Add your fetchAvatarUrl() call here!
     }
 }

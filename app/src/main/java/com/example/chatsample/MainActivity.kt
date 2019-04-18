@@ -26,7 +26,7 @@ import com.snapchat.kit.sdk.bitmoji.ui.BitmojiFragment
 import kotlin.random.Random
 
 
-class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
+class MainActivity : AppCompatActivity() /* Add OnBitmojiSelectedListener here! */ {
     private lateinit var recyclerView: RecyclerView
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -78,9 +78,8 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
         messageInput.requestFocus()
 
         // Setup Bitmoji icon
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.bitmoji_icon, BitmojiIconFragment())
-            .commit()
+
+        // Add your BitmojiIconFragment() here!
 
         bitmojiIcon = findViewById(R.id.bitmoji_icon)
 
@@ -95,52 +94,18 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
         }
 
         // Setup Bitmoji sticker picker
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.sticker_picker, BitmojiFragment.builder().withShowSearchBar(false).build())
-            .commit()
+
+        // Add your BitmojiFragment() here!
 
         // Setup search
         search = findViewById(R.id.search)
 
-        search.setOnClickListener {
-            val stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
-
-            stickerPicker?.setSearchText(messageInput.text.toString())
-
-            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-
-            messageInput.clearFocus()
-
-            if (!stickerPickerVisible) {
-                toggleStickerPickerVisibility()
-            }
-        }
+        // Add your search snippet here!
 
         // Setup Friendmoji toggle
         friendmojiToggle = findViewById(R.id.friendmoji)
 
-        friendmojiToggle.setOnClickListener {
-            val stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
-
-            if (!stickerPickerVisible) {
-                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-
-                messageInput.clearFocus()
-
-                toggleStickerPickerVisibility()
-            }
-
-            if (!friendmojiSet) {
-                stickerPicker?.setFriend("" /* External user ID here */)
-                friendmojiToggle.setImageResource(R.drawable.ic_people)
-            } else {
-                stickerPicker?.setFriend(null)
-                friendmojiToggle.setImageResource(R.drawable.ic_person)
-            }
-            friendmojiSet = !friendmojiSet
-        }
+        // Add your friendmoji snippet here!
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -160,11 +125,7 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
         }
     }
 
-    override fun onBitmojiSelected(imageUrl: String, previewDrawable: Drawable) {
-        messageAdapter.addMessage(ImageMessage(previewDrawable))
-        recyclerView.smoothScrollToPosition(messageAdapter.itemCount - 1)
-        generateResponse()
-    }
+    // Override onBitmojiSelected here!
 
     private fun generateResponse() {
         Handler().postDelayed({
