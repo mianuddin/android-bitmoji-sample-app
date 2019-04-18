@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
                 toggleStickerPickerVisibility()
             }
         }
+
         // Setup Friendmoji toggle
         friendmojiToggle = findViewById(R.id.friendmoji)
 
@@ -132,7 +133,7 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
             }
 
             if (!friendmojiSet) {
-                stickerPicker?.setFriend("friendIdHere")
+                stickerPicker?.setFriend("bostonbruin2")
                 friendmojiToggle.setImageResource(R.drawable.ic_people)
             } else {
                 stickerPicker?.setFriend("")
