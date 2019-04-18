@@ -27,7 +27,7 @@
                 android:src="@drawable/ic_person"
                 android:contentDescription="@string/avatar_hint"/>
         <Button
-                android:id="@+id/logout"
+                android:id="@+id/unlink"
                 android:text="@string/logout_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

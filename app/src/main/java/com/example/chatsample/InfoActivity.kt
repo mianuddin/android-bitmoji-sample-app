@@ -1,6 +1,5 @@
 package com.example.chatsample
 
-import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,8 +21,8 @@ class InfoActivity : AppCompatActivity() {
         supportActionBar?.title = "Info"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        findViewById<Button>(R.id.logout).setOnClickListener {
-            SnapKit.unlink(applicationContext)
+        findViewById<Button>(R.id.unlink).setOnClickListener {
+            SnapKit.unlink(baseContext)
             finish()
             startActivity(intent)
         }
@@ -32,7 +31,7 @@ class InfoActivity : AppCompatActivity() {
             override fun onSuccess(avatarUrl: String?) {
                 val avatarView = findViewById<ImageView>(R.id.avatar)
                 Picasso.get().load(avatarUrl).into(avatarView)
-                findViewById<Button>(R.id.logout).visibility = View.VISIBLE
+                findViewById<Button>(R.id.unlink).visibility = View.VISIBLE
             }
 
             override fun onFailure(isNetworkError: Boolean, statusCode: Int) {
