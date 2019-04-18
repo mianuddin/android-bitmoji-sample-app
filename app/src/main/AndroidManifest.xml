@@ -44,6 +44,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
 
+                <!-- Customize your redirect URL here. (scheme::host/path) -->
                 <data
                         android:host="snap-kit"
                         android:path="/oauth2"
