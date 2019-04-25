@@ -133,10 +133,10 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
             }
 
             if (!friendmojiSet) {
-                stickerPicker?.setFriend("bostonbruin2")
+                stickerPicker?.setFriend("" /* External user ID here */)
                 friendmojiToggle.setImageResource(R.drawable.ic_people)
             } else {
-                stickerPicker?.setFriend("")
+                stickerPicker?.setFriend(null)
                 friendmojiToggle.setImageResource(R.drawable.ic_person)
             }
             friendmojiSet = !friendmojiSet
