@@ -107,10 +107,10 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
 
             stickerPicker?.setSearchText(messageInput.text.toString())
 
-            messageInput.clearFocus()
-
             val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
+            messageInput.clearFocus()
 
             if (!stickerPickerVisible) {
                 toggleStickerPickerVisibility()
