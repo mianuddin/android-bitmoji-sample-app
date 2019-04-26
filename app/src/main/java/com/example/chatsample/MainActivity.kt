@@ -85,13 +85,13 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
         bitmojiIcon = findViewById(R.id.bitmoji_icon)
 
         bitmojiIcon.setOnClickListener {
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
             if (currentFocus == messageInput) {
                 messageInput.clearFocus()
                 toggleStickerPickerVisibility()
             }
-
-            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         }
 
         // Setup Bitmoji sticker picker
@@ -124,10 +124,10 @@ class MainActivity : AppCompatActivity(), OnBitmojiSelectedListener {
             val stickerPicker = supportFragmentManager.findFragmentById(R.id.sticker_picker) as? BitmojiFragment
 
             if (!stickerPickerVisible) {
-                messageInput.clearFocus()
-
                 val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
+                messageInput.clearFocus()
 
                 toggleStickerPickerVisibility()
             }
